@@ -16,10 +16,11 @@ from langchain_chroma import Chroma
 import json
 import re
 import logging
+import sys
 
 
 logging.basicConfig(level=logging.DEBUG,  # Change to DEBUG to get detailed logs
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+                    format='%(asctime)s - %(levelname)s - %(message)s', stream=sys.stdout)
 
 models = "gpt-4o"
 
@@ -31,11 +32,13 @@ ALLOWED_IP_ADDRESSES = {"127.0.0.1","171.50.226.59"}  # Add allowed IP addresses
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20 MB
 
+
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def extract_text(loader, file_path):
-    logging.debug(f"Extracting text from file: {file_path}")
+    logging.debug(f"Extracting text from file: {file_path} using loader: {loader}")
     try:
         doc = loader(file_path).load()
         logging.debug(f"Document loaded successfully: {file_path}")
