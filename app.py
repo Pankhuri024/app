@@ -19,6 +19,20 @@ import logging
 import sys
 import nltk
 
+
+# Use /tmp or another writable directory
+nltk_data_dir = '/tmp/nltk_data'
+
+# Ensure the directory exists
+os.makedirs(nltk_data_dir, exist_ok=True)
+
+# Download the NLTK data
+nltk.download('punkt_tab', download_dir=nltk_data_dir)
+
+# Set the path for NLTK to find the data
+nltk.data.path.append(nltk_data_dir)
+
+
 logging.basicConfig(level=logging.DEBUG,  # Change to DEBUG to get detailed logs
                     format='%(asctime)s - %(levelname)s - %(message)s', stream=sys.stdout)
 
@@ -32,15 +46,6 @@ ALLOWED_IP_ADDRESSES = {"127.0.0.1","171.50.226.59"}  # Add allowed IP addresses
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20 MB
 
-nltk.download('punkt_tab', download_dir='/app/download_nltk_data')  # Specify a directory
-@app.route('/test-nltk-data', methods=['GET'])
-def test_nltk_data():
-    try:
-        import nltk
-        nltk.data.find('tokenizers/punkt_tab/english.pickle')
-        return jsonify({'Message': 'NLTK data is available'}), 200
-    except LookupError:
-        return jsonify({'Message': 'NLTK data not found'}), 500
 
 
 def allowed_file(filename):

@@ -4,3 +4,4 @@ echo "venv/" > .gitignore
 gunicorn
 flask  # or other dependencies
 .env
+download_nltk_data.py
