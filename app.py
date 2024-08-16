@@ -16,25 +16,25 @@ from langchain_chroma import Chroma
 import json
 import re
 import logging
-import sys
-import nltk
+# import sys
+# import nltk
 
 
-# Use /tmp or another writable directory
-nltk_data_dir = '/tmp/nltk_data'
+# # Use /tmp or another writable directory
+# nltk_data_dir = '/tmp/nltk_data'
 
-# Ensure the directory exists
-os.makedirs(nltk_data_dir, exist_ok=True)
+# # Ensure the directory exists
+# os.makedirs(nltk_data_dir, exist_ok=True)
 
-# Download the NLTK data
-nltk.download('punkt_tab', download_dir=nltk_data_dir)
+# # Download the NLTK data
+# nltk.download('punkt_tab', download_dir=nltk_data_dir)
 
-# Set the path for NLTK to find the data
-nltk.data.path.append(nltk_data_dir)
+# # Set the path for NLTK to find the data
+# nltk.data.path.append(nltk_data_dir)
 
 
-logging.basicConfig(level=logging.DEBUG,  # Change to DEBUG to get detailed logs
-                    format='%(asctime)s - %(levelname)s - %(message)s', stream=sys.stdout)
+# logging.basicConfig(level=logging.DEBUG,  # Change to DEBUG to get detailed logs
+#                     format='%(asctime)s - %(levelname)s - %(message)s', stream=sys.stdout)
 
 models = "gpt-4o"
 
